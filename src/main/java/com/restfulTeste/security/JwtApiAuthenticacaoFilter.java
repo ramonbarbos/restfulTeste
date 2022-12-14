@@ -23,7 +23,7 @@ public class JwtApiAuthenticacaoFilter extends GenericFilterBean {
 		
 		
 		Authentication authentication = new JwtTokenAutenticacaoService()
-				.getAuthentication((HttpServletRequest)request, (HttpServletResponse) response);
+				.getAuhentication((HttpServletRequest)request, (HttpServletResponse) response);
 		
 		
 		

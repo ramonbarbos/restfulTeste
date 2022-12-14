@@ -44,7 +44,7 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter  {
 		
 		//Fltra demais requisições para verificar a presenção do TOKEN JWT no HEADER HTTP
 		
-		.addFilterBefore(  (javax.servlet.Filter) new JwtApiAuthenticacaoFilter(), UsernamePasswordAuthenticationFilter.class);
+		.addFilterBefore(  new JwtApiAuthenticacaoFilter(), UsernamePasswordAuthenticationFilter.class);
 		
 		
 	}
@@ -57,7 +57,7 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter  {
 		auth.userDetailsService(implementUserDetails)
 		//padrão de codificação de senha
 		.passwordEncoder(new BCryptPasswordEncoder());
-		super.configure(auth);
+		
 	}
 	
 
