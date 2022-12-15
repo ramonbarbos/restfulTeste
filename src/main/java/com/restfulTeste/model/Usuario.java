@@ -39,6 +39,15 @@ public class Usuario implements UserDetails  {
 	
 	private String nome;
 	
+	private String token;
+	
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "usuarios_role", uniqueConstraints = @UniqueConstraint(
 			columnNames = {"usuario_id", "role_id"}, name = "unique_role_user"),

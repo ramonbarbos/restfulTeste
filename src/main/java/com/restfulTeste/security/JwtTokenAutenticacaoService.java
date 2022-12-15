@@ -33,6 +33,9 @@ public class JwtTokenAutenticacaoService{
 	
 	private static final String HEADER_STRING = "Authorization";
 	
+
+	
+	
 		//Gera o token de resposta para o cliente com JWT
 		public void addAuthentication(javax.servlet.http.HttpServletResponse response, String username) throws Exception {
 			
@@ -65,6 +68,7 @@ public class JwtTokenAutenticacaoService{
 			
 			if (token != null) {
 				
+				
 				String tokenLimpo = token.replace(TOKEN_PREFIX, "").trim();
 				
 				/*Faz a validação do token do usuário na requisição*/
@@ -78,12 +82,16 @@ public class JwtTokenAutenticacaoService{
 					
 					if (usuario != null) {
 						
-						
-						
+						if(tokenLimpo.equalsIgnoreCase(usuario.getToken())) {
+							
+
 							return new UsernamePasswordAuthenticationToken(
 									usuario.getLogin(), 
 									usuario.getSenha(),
 									usuario.getAuthorities());
+							
+						}
+						
 					  }
 					
 				}

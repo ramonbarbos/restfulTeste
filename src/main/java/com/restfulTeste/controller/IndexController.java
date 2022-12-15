@@ -48,10 +48,11 @@ public class IndexController {
 	
 	//Consultar Todos
 	@GetMapping(value = "/", produces = "application/json")
-	public ResponseEntity<List<Usuario>> usuario(){
+	public ResponseEntity<List<Usuario>> usuario() throws InterruptedException{
 		
 		List<Usuario> list = (List<Usuario>) usuarioRepository.findAll();
 		
+		//Thread.sleep(6000);
 		return new ResponseEntity<List<Usuario>>(list, HttpStatus.OK);
 	}
 	
