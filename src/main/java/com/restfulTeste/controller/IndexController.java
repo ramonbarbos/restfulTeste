@@ -27,14 +27,24 @@ public class IndexController {
 @Autowired
 	private UsuarioRepository usuarioRepository;
 	
-	//Consulta
-	@GetMapping(value = "/{id}", produces = "application/json")
+	//Consulta ID
+	@GetMapping(value = "v1/{id}", produces = "application/json")
 	public ResponseEntity<Usuario> init(@PathVariable(value = "id" ) Long id ) {
 		
 		Usuario usuario = usuarioRepository.findById(id).get();
 		
 		return new ResponseEntity(usuario, HttpStatus.OK);
 	}
+	
+	//Consulta ID
+	@GetMapping(value = "v2/{id}", produces = "application/json")
+	public ResponseEntity<Usuario> initV2(@PathVariable(value = "id" ) Long id ) {
+		System.out.println("Versão 2");
+		Usuario usuario = usuarioRepository.findById(id).get();
+		return new ResponseEntity(usuario, HttpStatus.OK);
+		}
+			
+		
 	
 	//Consultar Todos
 	@GetMapping(value = "/", produces = "application/json")
