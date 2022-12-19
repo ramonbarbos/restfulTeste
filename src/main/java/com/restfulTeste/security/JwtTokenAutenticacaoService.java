@@ -1,5 +1,6 @@
 package com.restfulTeste.security;
 
+import java.io.IOException;
 import java.sql.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -69,6 +70,8 @@ public class JwtTokenAutenticacaoService{
 			/*Pega o token enviado no cabeçalho http*/
 			
 			String token = request.getHeader(HEADER_STRING);
+		try {
+		
 			
 			if (token != null) {
 				
@@ -100,7 +103,16 @@ public class JwtTokenAutenticacaoService{
 					
 				}
 				
+			}//FIm da condição
+			
+		} catch (io.jsonwebtoken.ExpiredJwtException e) {
+			try {
+				response.getOutputStream().println("Seu token está expirado");
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
+		}
 		
 			liberacaoCors(response);
 			return null; /*Não autorizado*/
