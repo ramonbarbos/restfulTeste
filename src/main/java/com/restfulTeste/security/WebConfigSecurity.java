@@ -2,6 +2,7 @@ package com.restfulTeste.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -32,6 +33,8 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter  {
 		//Ativando a permissão para acessar a pagina inicial do sistema
 		.disable().authorizeRequests().antMatchers("/").permitAll()
 		.antMatchers("/index").permitAll()
+		
+		.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 		
 		//URL de Logout -  Redireciona apos o usuario sair do sistema
 		.anyRequest().authenticated().and().logout().logoutSuccessUrl("/index")

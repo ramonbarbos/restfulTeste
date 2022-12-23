@@ -1,5 +1,7 @@
 package com.restfulTeste.repository;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.Modifying;
@@ -20,5 +22,8 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Long>{
 	@Modifying
 	@Query(nativeQuery = true, value="update usuario set token = ?1 where login = ?2 ")
 	void atualizarTokenUser(String login, String token);
+	
+	@Query("select u from Usuario u where u.nome like %?1%")
+	List<Usuario> findUserByNome(String nome);
 	
 }

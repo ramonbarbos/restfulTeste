@@ -55,6 +55,16 @@ public class IndexController {
 		//Thread.sleep(6000);
 		return new ResponseEntity<List<Usuario>>(list, HttpStatus.OK);
 	}
+	//END-POINT 
+	//Consultar por Nome
+	@GetMapping(value = "/usuarioPorNome/{nome}", produces = "application/json")
+	public ResponseEntity<List<Usuario>> usuarioPorNome(@PathVariable("nome") String nome) throws InterruptedException{
+		
+		List<Usuario> list = (List<Usuario>) usuarioRepository.findUserByNome(nome);
+		
+		//Thread.sleep(6000);
+		return new ResponseEntity<List<Usuario>>(list, HttpStatus.OK);
+	}
 	
 	//Cadastro
 	@PostMapping(value = "/",  produces = "application/json")
@@ -116,4 +126,7 @@ public class IndexController {
 		
 		return  "Ok";
 	}
+	
+	
+	
 }
